@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
+    <script type="text/javascript">
+    var lines = [];
+    var charsPerLine = 100;
+    var characters = "あアかカさサたタなナはハまマやヤらラわワいイきキしシちチにニひヒみミりリゐヰうウくクすスつツぬヌふフむムゆユるルえエけケせセてテねネへヘめメれレゑヱおオこコそソとトのノほホもモよヨろロをヲ";
+    var charactersLength = characters.length;
+    var noOfLines = 55;
+
+    function giveRandomString(maxCharacters) {
+        var str = "";
+        howMany = Math.random() * maxCharacters;
+        for (j = 0; j < howMany; j++) {
+            str += characters.charAt(Math.floor(Math.random() * charactersLength));
+            str += "\n";
+        }
+        return str;
+    }
+
+
+    function setup() {
+        frameRate(20);
+        createCanvas(screen.width, screen.height);
+        textSize(25);
+        for (i = 0; i < noOfLines; i++) {
+            lines[i] = giveRandomString(25);
+        }
+    }
+
+    function draw() {
+        background(30);
+        for (i = 0, x = 0; i < noOfLines; i++, x += 25) {
+            if (lines[i].length > 40) {
+                lines[i] = "";
+            } else {
+                original = lines[i];
+                fill(255, 255, 255);
+                randomChar = characters.charAt(Math.floor(Math.random() * charactersLength));
+                lines[i] += randomChar + "\n";
+                text(lines[i], x, 0);
+                fill(0, 179, 44);
+                text(original, x, 0);
+            }
+        }
+
+    }
+    </script>
+    <style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        overflow-y: hidden;
+    }
+    </style>
+</head>
+
+</html>
